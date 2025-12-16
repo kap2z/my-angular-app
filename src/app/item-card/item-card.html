@@ -1,0 +1,14 @@
+<article class="recipe-card">
+  <h3>{{ recipe.title }}</h3>
+  <p>{{ recipe.description }}</p>
+
+  <p><strong>Час приготування:</strong> {{ recipe.cookingTimeMinutes }} хв</p>
+  <p><strong>Складність:</strong> {{ recipe.difficulty }}</p>
+
+  <h4>Інгредієнти:</h4>
+  <ul>
+    <li *ngFor="let ingredient of recipe.ingredients">
+      {{ ingredient }}
+    </li>
+  </ul>
+</article>

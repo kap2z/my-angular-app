@@ -1,0 +1,7 @@
+<section>
+  <h2>Список рецептів</h2>
+
+  <div *ngFor="let recipe of recipes">
+    <app-item-card [recipe]="recipe"></app-item-card>
+  </div>
+</section>
