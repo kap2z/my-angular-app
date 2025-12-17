@@ -1,11 +1,9 @@
-<header>
-  <h1>{{ appTitle }}</h1>
-</header>
+<div class="layout">
+  <app-header [title]="appTitle"></app-header>
 
-<main>
-  <app-items-list></app-items-list>
-</main>
+  <main class="layout-content">
+    <app-items-list></app-items-list>
+  </main>
 
-<footer>
-  <p>Лисаченко Павло</p>
-</footer>
+  <app-footer author="Лисаченко Павло"></app-footer>
+</div>
