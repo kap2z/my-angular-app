@@ -19,7 +19,7 @@ export class ItemsList {
       ingredients: ['спагеті', 'бекон', 'яйця', 'сир пармезан', 'сіль', 'перець'],
       cookingTimeMinutes: 25,
       difficulty: 'medium',
-      imageUrl: '',
+      imageUrl: 'images/recipes/carbonara.jpg',
     },
     {
       id: 2,
@@ -28,7 +28,7 @@ export class ItemsList {
       ingredients: ['картопля', 'морква', 'яйця', 'ковбаса', 'горошок', 'майонез'],
       cookingTimeMinutes: 40,
       difficulty: 'easy',
-      imageUrl: '',
+      imageUrl: 'images/recipes/olivier.jpg',
     },
   ];
 }

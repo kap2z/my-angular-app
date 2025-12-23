@@ -1,11 +1,11 @@
 import { Component, Input } from '@angular/core';
-import { NgForOf } from '@angular/common';
+import { NgForOf, NgIf } from '@angular/common';
 import { Recipe } from '../shared/models/recipe.model';
 
 @Component({
   selector: 'app-item-card',
   standalone: true,
-  imports: [NgForOf],
+  imports: [NgForOf, NgIf],
   templateUrl: './item-card.html',
   styleUrl: './item-card.css',
 })
