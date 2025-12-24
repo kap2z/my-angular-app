@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { NgForOf, NgIf, NgClass } from '@angular/common';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { NgClass, NgForOf, NgIf } from '@angular/common';
 import { Recipe } from '../shared/models/recipe.model';
 
 @Component({
@@ -12,7 +12,13 @@ import { Recipe } from '../shared/models/recipe.model';
 export class ItemCard {
   @Input() recipe!: Recipe;
 
+  @Output() selected = new EventEmitter<Recipe>();
+
   get isQuick(): boolean {
     return this.recipe.cookingTimeMinutes <= 30;
+  }
+
+  onDetailsClick(): void {
+    this.selected.emit(this.recipe);
   }
 }
