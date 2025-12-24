@@ -1,0 +1,18 @@
+<article class="recipe-card">
+  <div class="recipe-image" *ngIf="recipe.imageUrl">
+    <img [src]="recipe.imageUrl" [alt]="recipe.title" />
+  </div>
+
+  <h3>{{ recipe.title }}</h3>
+  <p class="desc">{{ recipe.description }}</p>
+
+  <div class="meta">
+    <span><strong>Час:</strong> {{ recipe.cookingTimeMinutes }} хв</span>
+    <span><strong>Складність:</strong> {{ recipe.difficulty }}</span>
+  </div>
+
+  <h4>Інгредієнти:</h4>
+  <ul>
+    <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}</li>
+  </ul>
+</article>
