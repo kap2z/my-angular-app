@@ -1,7 +1,9 @@
-<article class="recipe-card">
+<article class="recipe-card" [ngClass]="{ quick: isQuick }">
   <div class="recipe-image" *ngIf="recipe.imageUrl">
     <img [src]="recipe.imageUrl" [alt]="recipe.title" />
   </div>
+
+  <div class="badge" *ngIf="isQuick">⭐ Швидко</div>
 
   <h3>{{ recipe.title }}</h3>
   <p class="desc">{{ recipe.description }}</p>
