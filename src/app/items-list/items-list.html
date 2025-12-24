@@ -2,6 +2,9 @@
   <h2>Список рецептів</h2>
 
   <div class="recipes-grid">
-    <app-item-card *ngFor="let recipe of recipes" [recipe]="recipe"></app-item-card>
+    <app-item-card
+      *ngFor="let recipe of recipes"
+      [recipe]="recipe">
+    </app-item-card>
   </div>
 </section>
