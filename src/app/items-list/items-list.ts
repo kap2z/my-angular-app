@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { NgForOf } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { Recipe } from '../shared/models/recipe.model';
+import { Subject, takeUntil } from 'rxjs';
+
 import { ItemCard } from '../item-card/item-card';
-import { DataService } from '../shared/services/data';
+import { DataService, Item } from '../shared/services/data'; // шлях як у тебе
 
 @Component({
   selector: 'app-items-list',
@@ -12,27 +13,40 @@ import { DataService } from '../shared/services/data';
   templateUrl: './items-list.html',
   styleUrl: './items-list.css',
 })
-export class ItemsList implements OnInit {
+export class ItemsList implements OnInit, OnDestroy {
   searchText = '';
-  recipes: Recipe[] = [];
+  recipes: Item[] = [];
+
+  private readonly destroy$ = new Subject<void>();
 
   constructor(private dataService: DataService) {}
 
   ngOnInit(): void {
-    this.recipes = this.dataService.getItems();
+
+    this.dataService.items$
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(items => (this.recipes = items));
+
+
+    this.dataService.getItems()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(items => {
+
+        this.dataService.filterItems(this.searchText);
+      });
   }
 
-  get filteredRecipes(): Recipe[] {
-    const q = this.searchText.trim().toLowerCase();
-    if (!q) return this.recipes;
-
-    return this.recipes.filter(r =>
-      r.title.toLowerCase().includes(q) ||
-      r.description.toLowerCase().includes(q)
-    );
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
   }
 
-  onRecipeSelected(recipe: Recipe) {
+
+  onSearchChange(value: string): void {
+    this.dataService.filterItems(value);
+  }
+
+  onRecipeSelected(recipe: Item) {
     console.log('Обрано рецепт:', recipe);
   }
 }
