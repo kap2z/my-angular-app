@@ -17,4 +17,7 @@
   <ul>
     <li *ngFor="let ingredient of recipe.ingredients">{{ ingredient }}</li>
   </ul>
+  <button type="button" class="details-btn" (click)="onDetailsClick()">
+    Детальніше
+  </button>
 </article>
